@@ -75,8 +75,12 @@ h1, h2, h3 { font-family: 'Pacifico', cursive; font-weight: 400; line-height: 1.
 }
 
 /* ===== Banner ===== */
-.banner-wrap { width: 100%; line-height: 0; overflow: hidden; }
-.banner-img { width: 100%; height: auto; object-fit: cover; }
+.banner-wrap { width: 100%; line-height: 0; overflow: hidden; display: block; }
+.banner-img { width: 100%; height: auto; object-fit: cover; display: block; }
+
+/* ===== No-logo nav (home page) ===== */
+.site-header.no-logo .header-inner { justify-content: center; }
+.site-header.no-logo .nav-toggle   { position: absolute; right: 1.5rem; }
 
 /* ===== Intro ===== */
 .intro {
