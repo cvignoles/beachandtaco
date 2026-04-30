@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeachAndTaco.com — Beaches &amp; Tacos Around the World</title>
+  <meta name="description" content="Discover the world's best taco spots and most amazing beaches. Sun, sand, surf, and the perfect taco.">
+  <link rel="icon" type="image/png" href="images/beachandtacoLogo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html">
+        <img src="images/beachandtacoLogo.png" alt="BeachAndTaco.com" class="logo">
+      </a>
+      <button class="nav-toggle" aria-label="Open menu">&#9776;</button>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="banner-wrap">
+    <img src="images/beachandtacowavebanner.png" alt="Beach and Taco — Beaches &amp; Tacos Around the World" class="banner-img">
+  </div>
+
+  <main>
+    <section class="intro">
+      <h1>Beaches &amp; Tacos Around the World</h1>
+      <p>Sun, sand, surf, and the perfect taco. We've scoured the globe's most breathtaking beaches and most mouth-watering taco spots — so you can spend less time searching and more time eating, exploring, and living your best beach life.</p>
+    </section>
+
+    <section class="map-section">
+      <div class="map-controls">
+        <button class="layer-btn" data-layer="tacos" id="btn-tacos">&#127790; Taco Spots</button>
+        <button class="layer-btn" data-layer="beaches" id="btn-beaches">&#127958; Beaches</button>
+      </div>
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 BeachAndTaco.com &mdash; Life's better with tacos and an ocean view.</p>
+    <nav class="footer-nav">
+      <a href="about.html">About</a>
+      <a href="blog/index.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>

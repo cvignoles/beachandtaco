@@ -1,0 +1,14 @@
+# API keys and secrets
+js/config.js
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temp Word files
+~$*
+
+# Editor
+.vscode/
+.idea/
