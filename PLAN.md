@@ -16,7 +16,13 @@ Plain HTML + CSS + Vanilla JS, deployed to Cloudflare Pages. No framework, no bu
 ├── css/
 │   └── style.css
 ├── data/
-│   └── places.json     (all beaches + taco spots — edit this to add a place)
+│   ├── places.json     (all beaches + taco spots — edit this to add a place)
+│   └── places.candidates.json  (import staging, not read by the site)
+├── tools/
+│   ├── add.html        (browser form for logging a spot)
+│   ├── add_place.py    (same, from the terminal)
+│   └── ...             (one-time Takeout migration scripts)
+├── robots.txt
 ├── js/
 │   ├── map.js
 │   ├── nav.js
@@ -61,6 +67,53 @@ automatically. No code changes.
 ```
 
 Only `name`, `type`, `lat` and `lng` are required. Entries missing those are skipped.
+
+## Adding a Spot
+
+Three ways, all ending in the same one-line edit to `data/places.json`.
+
+**From a phone or browser — `tools/add.html`**
+Open it locally (`python3 -m http.server`, then `/tools/add.html`) or on the live
+site at `/tools/add.html`. Paste a Google Maps link, or type a name and city, and
+it fills in coordinates, city, region and country. It hands back a JSON block to
+paste into `data/places.json` via GitHub's web editor. A half-finished entry
+survives a reload. The page is `noindex` and disallowed in `robots.txt`.
+
+**From the terminal — `tools/add_place.py`**
+
+```
+python3 tools/add_place.py                       # interactive
+python3 tools/add_place.py --url "https://maps.app.goo.gl/..." --type taco --rating 5
+```
+
+It writes straight into `data/places.json`, warns if something is already logged
+at those coordinates, and prints the git command to push it live.
+
+**By hand** — append an object to the `places` array, following the schema above.
+
+### How coordinates are resolved
+Both helpers read them straight out of a Google Maps URL when it has them
+(`@lat,lng`, `?q=`, `!3d!4d`). Otherwise they ask OpenStreetMap, which needs no
+API key. Results are gated on precision: Nominatim answers a restaurant query
+with the city centroid, which looks plausible and is wrong, so anything vaguer
+than a real point of interest is rejected rather than written. When that happens,
+right-click the pin in Google Maps and paste the two numbers in yourself.
+
+## One-time Migration Tooling
+
+Used to pull the existing log out of Google Takeout. Kept for re-runs.
+
+| Script | Does |
+|---|---|
+| `tools/import_takeout.py` | filters a Takeout export down to beach/taco places |
+| `tools/geocode.py` | fills missing coordinates via OpenStreetMap, no key |
+| `tools/geocode_google.py` | same via Google, for what OSM cannot place (needs a temporary unrestricted key) |
+| `tools/merge_candidates.py` | folds curated candidates into `data/places.json` |
+
+Note: there was never a "Beaches" or "Tacos" list in the Google account. The
+spots were spread across Favorite places, Want to go, and the reviews — and the
+reviews turned out to be the richest source, being the only one carrying
+coordinates, star ratings and written notes.
 
 ## Map Behavior (`js/map.js`)
 

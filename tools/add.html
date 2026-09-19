@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Add a Spot — BeachAndTaco.com</title>
+  <link rel="icon" type="image/png" href="../images/beachandtacoLogo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue-dark:#3B3988; --coral:#FF5A5F; --orange:#FF9A3C; --yellow:#FFD23F;
+      --teal:#00B4D8; --sand:#FFF8EE; --text:#2C2C2C; --mid:#666; --radius:8px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Nunito',sans-serif;color:var(--text);background:var(--sand);
+         line-height:1.6;padding:1.5rem 1rem 3rem}
+    .wrap{max-width:640px;margin:0 auto}
+    h1{font-family:'Pacifico',cursive;font-weight:400;color:var(--blue-dark);
+       font-size:2rem;margin-bottom:.15rem}
+    .sub{color:var(--mid);margin-bottom:1.5rem}
+    .card{background:#fff;border-radius:var(--radius);padding:1.25rem;
+          box-shadow:0 2px 8px rgba(0,0,0,.07);margin-bottom:1.25rem}
+    label{display:block;font-weight:700;font-size:.85rem;text-transform:uppercase;
+          letter-spacing:.03em;color:var(--mid);margin:.9rem 0 .3rem}
+    label:first-child{margin-top:0}
+    input,select,textarea{width:100%;padding:.6rem .75rem;border:2px solid #E6DCCB;
+      border-radius:var(--radius);font-family:inherit;font-size:1rem;background:#fff;color:var(--text)}
+    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal)}
+    textarea{min-height:5rem;resize:vertical}
+    .row{display:flex;gap:.75rem}.row>*{flex:1}
+    button{font-family:inherit;font-weight:700;font-size:1rem;cursor:pointer;
+           border-radius:50px;padding:.6rem 1.4rem;border:2px solid;transition:.2s}
+    .primary{background:var(--teal);border-color:var(--teal);color:#fff}
+    .primary:hover{filter:brightness(1.08)}
+    .ghost{background:#fff;border-color:var(--blue-dark);color:var(--blue-dark)}
+    .ghost:hover{background:var(--blue-dark);color:#fff}
+    .actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.1rem}
+    .status{font-size:.9rem;margin-top:.6rem;min-height:1.4rem}
+    .status.err{color:var(--coral);font-weight:700}
+    .status.ok{color:#0a7d2c;font-weight:700}
+    pre{background:#1e1e2e;color:#e6e6f0;padding:1rem;border-radius:var(--radius);
+        overflow-x:auto;font-size:.85rem;line-height:1.5;white-space:pre}
+    .hint{font-size:.82rem;color:var(--mid);margin-top:.35rem}
+    .steps{font-size:.9rem;color:var(--mid);padding-left:1.2rem}
+    .steps li{margin:.3rem 0}
+    code{background:var(--sand);padding:.1rem .35rem;border-radius:4px;font-size:.85em}
+    a{color:var(--blue-dark)}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Add a Spot</h1>
+  <p class="sub">Fills in the coordinates for you, then hands you JSON to paste into <code>data/places.json</code>.</p>
+
+  <div class="card">
+    <label for="url">Google Maps link</label>
+    <input id="url" type="url" placeholder="https://maps.app.goo.gl/… or a maps.google.com link" inputmode="url">
+    <p class="hint">Paste a link and hit Look up. No link? Type a name and city below instead.</p>
+
+    <div class="row" style="margin-top:.9rem">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Tacos El Gordo">
+      </div>
+      <div>
+        <label for="type">Type</label>
+        <select id="type">
+          <option value="taco">Taco spot</option>
+          <option value="beach">Beach</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="hint">City or address <span style="text-transform:none;font-weight:400">(helps the lookup)</span></label>
+    <input id="hint" type="text" placeholder="Chula Vista, California">
+
+    <div class="actions">
+      <button class="primary" id="lookup">Look up location</button>
+      <button class="ghost" id="useGps">Use my location</button>
+    </div>
+    <p class="status" id="status"></p>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <div><label for="lat">Latitude</label><input id="lat" type="text" inputmode="decimal" placeholder="32.6349"></div>
+      <div><label for="lng">Longitude</label><input id="lng" type="text" inputmode="decimal" placeholder="-117.0725"></div>
+    </div>
+    <div class="row">
+      <div><label for="city">City</label><input id="city" type="text"></div>
+      <div><label for="region">Region / state</label><input id="region" type="text"></div>
+    </div>
+    <div class="row">
+      <div><label for="country">Country</label><input id="country" type="text"></div>
+      <div><label for="visited">Visited</label><input id="visited" type="date"></div>
+    </div>
+    <label for="rating">Rating</label>
+    <select id="rating">
+      <option value="">No rating</option>
+      <option value="5">5 — ★★★★★</option>
+      <option value="4">4 — ★★★★☆</option>
+      <option value="3">3 — ★★★☆☆</option>
+      <option value="2">2 — ★★☆☆☆</option>
+      <option value="1">1 — ★☆☆☆☆</option>
+    </select>
+    <label for="notes">Notes</label>
+    <textarea id="notes" placeholder="What to order, when to go, what makes it worth the trip."></textarea>
+    <label for="photo">Photo path <span style="text-transform:none;font-weight:400">(optional)</span></label>
+    <input id="photo" type="text" placeholder="images/places/el-gordo.jpg">
+  </div>
+
+  <div class="card">
+    <pre id="out">Fill in the fields above.</pre>
+    <div class="actions">
+      <button class="primary" id="copy">Copy JSON</button>
+      <button class="ghost" id="reset">Clear</button>
+    </div>
+    <p class="status" id="copyStatus"></p>
+    <ol class="steps" style="margin-top:1rem">
+      <li>Copy the JSON above.</li>
+      <li>Open <code>data/places.json</code> on GitHub and click the pencil.</li>
+      <li>Paste it as a new item in the <code>places</code> array, keeping the commas right.</li>
+      <li>Commit. Cloudflare redeploys on its own.</li>
+    </ol>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const UA_NOTE = 'BeachAndTaco.com add-a-spot helper';
+const FIELDS = ['url','name','type','hint','lat','lng','city','region','country','visited','rating','notes','photo'];
+
+function say(msg, kind) {
+  const el = $('status');
+  el.textContent = msg;
+  el.className = 'status' + (kind ? ' ' + kind : '');
+}
+
+// Coordinates hide in several places in a Google Maps URL.
+const COORD_PATTERNS = [
+  /@(-?\d+\.\d+),(-?\d+\.\d+)/,
+  /[?&]q=(-?\d+\.\d+),\s*(-?\d+\.\d+)/,
+  /[?&]ll=(-?\d+\.\d+),(-?\d+\.\d+)/,
+  /!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/,
+  /\/search\/(-?\d+\.\d+),\s*(-?\d+\.\d+)/,
+];
+
+function fromUrl(url) {
+  let lat = null, lng = null, name = '';
+  for (const re of COORD_PATTERNS) {
+    const m = url.match(re);
+    if (m) { lat = parseFloat(m[1]); lng = parseFloat(m[2]); break; }
+  }
+  const nm = url.match(/\/maps\/place\/([^/@?]+)/);
+  if (nm) name = decodeURIComponent(nm[1].replace(/\+/g, ' ')).trim();
+  return { lat, lng, name };
+}
+
+const COUNTRY_ALIASES = {
+  'méxico':'Mexico','españa':'Spain','usa':'United States',
+  'united states of america':'United States','italia':'Italy','deutschland':'Germany',
+};
+const normCountry = (c) => c ? (COUNTRY_ALIASES[c.trim().toLowerCase()] || c.trim()) : '';
+
+function fillAddress(addr) {
+  if (!addr) return;
+  const city = addr.city || addr.town || addr.village || addr.municipality
+            || addr.suburb || addr.county || '';
+  if (city && !$('city').value) $('city').value = city;
+  if (addr.state && !$('region').value) $('region').value = addr.state;
+  if (addr.country && !$('country').value) $('country').value = normCountry(addr.country);
+}
+
+async function reverse(lat, lng) {
+  const u = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}`
+          + `&format=jsonv2&zoom=14&addressdetails=1`;
+  const r = await fetch(u, { headers: { 'Accept': 'application/json' } });
+  if (!r.ok) throw new Error('lookup failed (' + r.status + ')');
+  return r.json();
+}
+
+// Reject city centroids: they look plausible and are wrong for a restaurant.
+const VAGUE = new Set(['city','town','village','municipality','hamlet','state','country',
+  'county','administrative','suburb','quarter','neighbourhood','city_district',
+  'road','residential','postcode','locality']);
+const POI = new Set(['amenity','shop','leisure','tourism','natural','historic','building','club','office']);
+const isPrecise = (r) => !VAGUE.has((r.addresstype || r.type || '').toLowerCase())
+                      && POI.has((r.category || '').toLowerCase());
+
+async function forward(query) {
+  const u = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}`
+          + `&format=jsonv2&limit=5&addressdetails=1`;
+  const r = await fetch(u, { headers: { 'Accept': 'application/json' } });
+  if (!r.ok) throw new Error('lookup failed (' + r.status + ')');
+  return (await r.json()).filter(isPrecise);
+}
+
+$('lookup').addEventListener('click', async () => {
+  const url = $('url').value.trim();
+  try {
+    if (url) {
+      const { lat, lng, name } = fromUrl(url);
+      if (name && !$('name').value) $('name').value = name;
+      if (lat !== null) {
+        $('lat').value = lat; $('lng').value = lng;
+        say('Got coordinates from the link. Filling in the location…');
+        fillAddress((await reverse(lat, lng)).address);
+        say('Done.', 'ok'); render(); return;
+      }
+      say('That link has no coordinates in it — short links hide them. '
+        + 'Open it in Maps first, then copy the long URL from the address bar.', 'err');
+      if (!$('name').value && !$('hint').value) return;
+    }
+    const query = [$('name').value.trim(), $('hint').value.trim()].filter(Boolean).join(', ');
+    if (!query) { say('Give me a link, or a name and a city.', 'err'); return; }
+
+    say('Looking up "' + query + '"…');
+    const hits = await forward(query);
+    if (!hits.length) {
+      say('No confident match. Open the place in Google Maps, right-click the pin, '
+        + 'and paste the two numbers into Latitude and Longitude below.', 'err');
+      return;
+    }
+    const hit = hits[0];
+    $('lat').value = (+hit.lat).toFixed(6);
+    $('lng').value = (+hit.lon).toFixed(6);
+    fillAddress(hit.address);
+    say('Matched: ' + hit.display_name, 'ok');
+    render();
+  } catch (err) {
+    say(String(err.message || err), 'err');
+  }
+});
+
+$('useGps').addEventListener('click', () => {
+  if (!navigator.geolocation) { say('This browser has no geolocation.', 'err'); return; }
+  say('Asking for your location…');
+  navigator.geolocation.getCurrentPosition(async (pos) => {
+    $('lat').value = pos.coords.latitude.toFixed(6);
+    $('lng').value = pos.coords.longitude.toFixed(6);
+    try { fillAddress((await reverse($('lat').value, $('lng').value)).address); } catch (e) {}
+    say('Using your current position. Check the name is right.', 'ok');
+    render();
+  }, () => say('Location permission denied.', 'err'));
+});
+
+function build() {
+  const num = (v) => { const n = parseFloat(v); return Number.isFinite(n) ? n : null; };
+  const e = {};
+  const name = $('name').value.trim();
+  if (name) e.name = name;
+  e.type = $('type').value;
+  const lat = num($('lat').value), lng = num($('lng').value);
+  if (lat !== null) e.lat = lat;
+  if (lng !== null) e.lng = lng;
+  for (const k of ['city','region','country']) {
+    const v = $(k).value.trim();
+    if (v) e[k] = k === 'country' ? normCountry(v) : v;
+  }
+  if ($('visited').value) e.visited = $('visited').value;
+  if ($('rating').value) e.rating = parseInt($('rating').value, 10);
+  const notes = $('notes').value.trim().replace(/\s+/g, ' ');
+  if (notes) e.notes = notes;
+  const url = $('url').value.trim();
+  if (url) e.mapsUrl = url;
+  const photo = $('photo').value.trim();
+  if (photo) e.photo = photo;
+  return e;
+}
+
+function render() {
+  const e = build();
+  const missing = ['name','lat','lng'].filter((k) => e[k] === undefined);
+  $('out').textContent = missing.length
+    ? 'Still needed: ' + missing.join(', ')
+    : JSON.stringify(e, null, 2) + ',';
+  $('copy').disabled = missing.length > 0;
+  save();
+}
+
+$('copy').addEventListener('click', async () => {
+  const text = $('out').textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    $('copyStatus').textContent = 'Copied.';
+    $('copyStatus').className = 'status ok';
+  } catch {
+    // Clipboard API needs a secure context; selecting the text still works.
+    const r = document.createRange();
+    r.selectNodeContents($('out'));
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    $('copyStatus').textContent = 'Selected — press Cmd/Ctrl+C.';
+    $('copyStatus').className = 'status';
+  }
+  setTimeout(() => { $('copyStatus').textContent = ''; }, 4000);
+});
+
+$('reset').addEventListener('click', () => {
+  FIELDS.forEach((f) => { if (f !== 'type') $(f).value = ''; });
+  $('type').value = 'taco'; $('rating').value = '';
+  $('visited').valueAsDate = new Date();
+  say(''); render();
+});
+
+// Keep a half-finished entry across an accidental reload.
+function save() {
+  try {
+    const d = {}; FIELDS.forEach((f) => d[f] = $(f).value);
+    localStorage.setItem('bt-add-draft', JSON.stringify(d));
+  } catch {}
+}
+function restore() {
+  try {
+    const d = JSON.parse(localStorage.getItem('bt-add-draft') || '{}');
+    FIELDS.forEach((f) => { if (d[f]) $(f).value = d[f]; });
+  } catch {}
+}
+
+FIELDS.forEach((f) => $(f).addEventListener('input', render));
+restore();
+if (!$('visited').value) $('visited').valueAsDate = new Date();
+render();
+</script>
+</body>
+</html>
