@@ -18,8 +18,10 @@ Plain HTML + CSS + Vanilla JS, deployed to Cloudflare Pages. No framework, no bu
 ├── data/
 │   ├── places.json     (all beaches + taco spots — edit this to add a place)
 │   └── places.candidates.json  (import staging, not read by the site)
+├── manifest.webmanifest        (home-screen install for the add form)
+├── images/icons/               (home-screen icons)
 ├── tools/
-│   ├── add.html        (browser form for logging a spot)
+│   ├── add.html        (3-step add-a-spot walkthrough, installable)
 │   ├── add_place.py    (same, from the terminal)
 │   └── ...             (one-time Takeout migration scripts)
 ├── robots.txt
@@ -72,12 +74,22 @@ Only `name`, `type`, `lat` and `lng` are required. Entries missing those are ski
 
 Three ways, all ending in the same one-line edit to `data/places.json`.
 
-**From a phone or browser — `tools/add.html`**
-Open it locally (`python3 -m http.server`, then `/tools/add.html`) or on the live
-site at `/tools/add.html`. Paste a Google Maps link, or type a name and city, and
-it fills in coordinates, city, region and country. It hands back a JSON block to
-paste into `data/places.json` via GitHub's web editor. A half-finished entry
-survives a reload. The page is `noindex` and disallowed in `robots.txt`.
+**From a phone — `tools/add.html`, installed to the home screen**
+Open `https://beachandtaco.com/tools/add.html`, then Share -> Add to Home Screen
+(iOS) or the browser menu -> Install app (Android). It launches full-screen with
+its own icon, no address bar.
+
+It walks through three steps so nothing has to be remembered between adds:
+
+1. **Find it** — paste a Google Maps link, type a name and town, or tap
+   "I'm here now" to use GPS. Coordinates, city, region and country get filled in.
+2. **Describe it** — beach or taco, rating, date, notes.
+3. **Publish it** — Copy, then a button straight to the GitHub editor for
+   `data/places.json`. Paste under the `"places": [` line and commit.
+
+A half-finished entry survives a reload or the app being backgrounded, including
+which step it was on. The page is `noindex` and `/tools/` is disallowed in
+`robots.txt`.
 
 **From the terminal — `tools/add_place.py`**
 

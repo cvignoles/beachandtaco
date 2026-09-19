@@ -1,4 +1,2 @@
 User-agent: *
 Disallow: /tools/
-
-Sitemap: https://beachandtaco.com/sitemap.xml
