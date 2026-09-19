@@ -1,5 +1,9 @@
-# API keys and secrets
-js/config.js
+# Google Maps browser key lives in js/config.js and IS committed on purpose.
+# A Maps JavaScript key is public by design — the browser sends it to Google on
+# every map load, so hiding it from git protects nothing and breaks the deploy
+# (Cloudflare Pages builds from this repo). It is secured in Google Cloud Console
+# by HTTP-referrer restriction + API restriction, which is Google's own guidance.
+# Keys for server-side/one-off scripts (Places, Geocoding) must NOT be committed.
 
 # macOS
 .DS_Store

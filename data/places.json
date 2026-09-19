@@ -1,0 +1,84 @@
+{
+  "_schema": {
+    "name":    "Place name as it appears on Google Maps",
+    "type":    "\"taco\" or \"beach\"",
+    "lat":     "Decimal latitude",
+    "lng":     "Decimal longitude",
+    "city":    "City or town",
+    "region":  "State / province (optional)",
+    "country": "Country",
+    "visited": "YYYY-MM-DD of your visit (optional, used for sorting)",
+    "rating":  "1-5 (optional)",
+    "notes":   "Your take — what to order, when to go, what makes it special",
+    "mapsUrl": "Google Maps share link (optional)",
+    "photo":   "Path under images/places/ (optional)",
+    "post":    "Path to a blog post about it (optional)"
+  },
+  "places": [
+    {
+      "name": "Tacos El Gordo",
+      "type": "taco",
+      "lat": 32.6349,
+      "lng": -117.0725,
+      "city": "Chula Vista",
+      "region": "California",
+      "country": "United States",
+      "visited": "2025-03-14",
+      "rating": 5,
+      "notes": "Starter entry — replace with your own notes. Tijuana-style adobada carved straight off the trompo. Each meat has its own line, so pick a line before you pick a table.",
+      "mapsUrl": "https://maps.google.com/?q=Tacos+El+Gordo+Chula+Vista"
+    },
+    {
+      "name": "Tacos El Yaqui",
+      "type": "taco",
+      "lat": 32.3325,
+      "lng": -117.0507,
+      "city": "Rosarito",
+      "region": "Baja California",
+      "country": "Mexico",
+      "visited": "2024-11-02",
+      "rating": 5,
+      "notes": "Starter entry — replace with your own notes. The perrón: carne asada, beans, guacamole, cheese, on a flour tortilla. Cash only, expect a line on weekends.",
+      "mapsUrl": "https://maps.google.com/?q=Tacos+El+Yaqui+Rosarito"
+    },
+    {
+      "name": "La Jolla Shores",
+      "type": "beach",
+      "lat": 32.8570,
+      "lng": -117.2570,
+      "city": "San Diego",
+      "region": "California",
+      "country": "United States",
+      "visited": "2025-06-21",
+      "rating": 4,
+      "notes": "Starter entry — replace with your own notes. Gentle waves, wide sand, good for beginners and kayaking out to the caves.",
+      "mapsUrl": "https://maps.google.com/?q=La+Jolla+Shores"
+    },
+    {
+      "name": "Windansea Beach",
+      "type": "beach",
+      "lat": 32.8300,
+      "lng": -117.2810,
+      "city": "San Diego",
+      "region": "California",
+      "country": "United States",
+      "visited": "2025-01-18",
+      "rating": 5,
+      "notes": "Starter entry — replace with your own notes. Rocky, dramatic, and the surf shack has been there since 1946. Best at sunset.",
+      "mapsUrl": "https://maps.google.com/?q=Windansea+Beach"
+    },
+    {
+      "name": "Playa Balandra",
+      "type": "beach",
+      "lat": 24.3210,
+      "lng": -110.3270,
+      "city": "La Paz",
+      "region": "Baja California Sur",
+      "country": "Mexico",
+      "visited": "2024-04-09",
+      "rating": 5,
+      "notes": "Starter entry — replace with your own notes. Knee-deep turquoise water for hundreds of meters. Entry is limited to two sessions a day, so arrive early.",
+      "mapsUrl": "https://maps.google.com/?q=Playa+Balandra+La+Paz"
+    }
+  ]
+}
