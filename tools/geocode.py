@@ -27,6 +27,14 @@ HINTS = {
     "praia da falésia": "Albufeira, Algarve, Portugal",
     "los caños de meca": "Barbate, Cadiz, Spain",
     "bar miramar sayulita": "Sayulita, Nayarit, Mexico",
+    # Google's Geocoding API could not place these three; OSM can, given the
+    # street or the natural-feature name rather than the business name alone.
+    "los caños de meca": "Playa de los Caños de Meca, Barbate, Cadiz, Spain",
+    # Two Pacific Beach locations exist (703 Turquoise St and 746 Emerald St).
+    # The Takeout CSV carries only a Google feature id, which OSM cannot resolve,
+    # so this picks the original on Turquoise. Verify against your own memory.
+    "oscars mexican seafood": "703 Turquoise St, San Diego, CA",
+    "el tarasco": "El Tarasco, Rosecrans Avenue, Manhattan Beach, California",
 }
 
 

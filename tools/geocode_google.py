@@ -116,30 +116,10 @@ def search(query, key, mode):
         return search_geocoding(query, key)
 
 
-def split_address(addr):
-    parts = [p.strip() for p in (addr or "").split(",") if p.strip()]
-    if len(parts) < 2:
-        return "", "", ""
-    country = parts[-1]
-    prev = parts[-2]
-    bits = prev.split()
-    if len(bits) == 2 and len(bits[0]) == 2 and bits[0].isupper():
-        return (parts[-3] if len(parts) >= 3 else ""), bits[0], country
-    return prev, "", country
-
-
-TROUBLESHOOT = """
-  A 403 from this endpoint is almost always one of these:
-    1. "Places API (New)" is not enabled. It is a SEPARATE product from the
-       legacy "Places API" — enabling the old one does not enable this one.
-       Console -> APIs & Services -> Library -> search "Places API (New)".
-    2. The key has an Application restriction. An HTTP-referrer restriction
-       rejects server-side calls like this one, because curl sends no referrer.
-       Set Application restrictions to "None" on this temporary key.
-    3. Billing is not enabled on the project that owns the key.
-    4. The key's API restrictions do not list the API being called.
-  Re-run with --mode geocoding to use the Geocoding API instead.
-"""
+# Reuse the address parser from the importer rather than keeping a second,
+# weaker copy here. The local one returned "Nay." as the city for Sayulita.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from import_takeout import city_country as split_address  # noqa: E402
 
 
 def main():
@@ -196,6 +176,7 @@ def main():
             e["country"] = country or e.get("country", "")
             if res.get("url"):
                 e["mapsUrl"] = res["url"]
+            e["_address"] = addr
             e.pop("_needs_geocode", None)
             e["_geocoded"] = "google-" + res["via"]
         done += 1

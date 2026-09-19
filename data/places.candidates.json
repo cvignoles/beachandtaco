@@ -17,15 +17,16 @@
     {
       "name": "Bar Miramar Sayulita",
       "type": "beach",
-      "lat": 0,
-      "lng": 0,
-      "city": "",
-      "country": "",
+      "lat": 20.873491,
+      "lng": -105.43529,
+      "city": "Sayulita",
+      "country": "Mexico",
       "notes": "",
       "mapsUrl": "https://www.google.com/maps/place/Bar+Miramar+Sayulita/data=!4m2!3m1!1s0x842117923312f94f:0x7e35f701eaedfe11",
       "_match": "list:Want to go",
       "_source": "Saved/Want to go.csv",
-      "_needs_geocode": true
+      "_geocoded": "google-geocoding",
+      "region": "Nayarit"
     },
     {
       "name": "Casa Tranquilidad",
@@ -59,28 +60,29 @@
     {
       "name": "Los Caños de Meca",
       "type": "beach",
-      "lat": 0,
-      "lng": 0,
-      "city": "",
-      "country": "",
+      "lat": 36.184843,
+      "lng": -6.032266,
+      "city": "Barbate",
+      "country": "España",
       "notes": "",
       "mapsUrl": "https://www.google.com/maps/place/Los+Ca%C3%B1os+de+Meca/data=!4m2!3m1!1s0xd0c412f9493595b:0xa04640009eb0a30",
       "_match": "list:Want to go",
       "_source": "Saved/Want to go.csv",
-      "_needs_geocode": true
+      "region": "Andalucía",
+      "_geocoded": "nominatim"
     },
     {
       "name": "Praia da Falésia",
       "type": "beach",
-      "lat": 0,
-      "lng": 0,
-      "city": "",
-      "country": "",
+      "lat": 37.083403,
+      "lng": -8.159135,
+      "city": "Olhos de Água",
+      "country": "Portugal",
       "notes": "",
       "mapsUrl": "https://www.google.com/maps/place/Praia+da+Fal%C3%A9sia/data=!4m2!3m1!1s0xd1aca2dab8fa859:0x8d275b4ac2580492",
       "_match": "list:Want to go",
       "_source": "Saved/Want to go.csv",
-      "_needs_geocode": true
+      "_geocoded": "google-geocoding"
     },
     {
       "name": "The Office on the Beach",
@@ -130,15 +132,16 @@
     {
       "name": "El Tarasco",
       "type": "taco",
-      "lat": 0,
-      "lng": 0,
-      "city": "",
-      "country": "",
+      "lat": 33.901021,
+      "lng": -118.417268,
+      "city": "Manhattan Beach",
+      "country": "United States",
       "notes": "",
       "mapsUrl": "https://www.google.com/maps/place/El+Tarasco/data=!4m2!3m1!1s0x80c2baa2e51179d9:0x34c79c7dea3cae71",
       "_match": "list:Want to go",
       "_source": "Saved/Want to go.csv",
-      "_needs_geocode": true
+      "region": "California",
+      "_geocoded": "nominatim"
     },
     {
       "name": "La Torta Gorda",
@@ -173,54 +176,58 @@
     {
       "name": "Mary's Traditional Mexican Cuisine",
       "type": "taco",
-      "lat": 0,
-      "lng": 0,
-      "city": "",
-      "country": "",
+      "lat": 20.869261,
+      "lng": -105.440173,
+      "city": "Sayulita",
+      "country": "Mexico",
       "notes": "",
       "mapsUrl": "https://www.google.com/maps/place/Mary's+Traditional+Mexican+Cuisine/data=!4m2!3m1!1s0x842116705e992cd1:0xd523f3fa932f2c98",
       "_match": "list:Want to go",
       "_source": "Saved/Want to go.csv",
-      "_needs_geocode": true
+      "_geocoded": "google-geocoding",
+      "region": "Nayarit"
     },
     {
       "name": "Mission Baja Tacos",
       "type": "taco",
-      "lat": 0,
-      "lng": 0,
-      "city": "",
-      "country": "",
+      "lat": 32.785213,
+      "lng": -117.252823,
+      "city": "San Diego",
+      "country": "United States",
       "notes": "Fish Taco 9/10",
       "mapsUrl": "https://www.google.com/maps/place/Mission+Baja+Tacos/data=!4m2!3m1!1s0x80dc01d8d47da75d:0xbfd4cfd823e0e2b1",
       "_match": "list:Favorite places",
       "_source": "Saved/Favorite places.csv",
-      "_needs_geocode": true
+      "region": "California",
+      "_geocoded": "google-geocoding"
     },
     {
       "name": "Nixtaco",
       "type": "taco",
-      "lat": 0,
-      "lng": 0,
-      "city": "",
-      "country": "",
+      "lat": 38.72978,
+      "lng": -121.256589,
+      "city": "Roseville",
+      "country": "United States",
       "notes": "",
       "mapsUrl": "https://www.google.com/maps/place/Nixtaco/data=!4m2!3m1!1s0x809ae0022486039f:0xa2f5977e83d362b9",
       "_match": "list:Want to go",
       "_source": "Saved/Want to go.csv",
-      "_needs_geocode": true
+      "region": "California",
+      "_geocoded": "google-geocoding"
     },
     {
       "name": "Oscars Mexican Seafood",
       "type": "taco",
-      "lat": 0,
-      "lng": 0,
-      "city": "",
-      "country": "",
+      "lat": 32.808163,
+      "lng": -117.260872,
+      "city": "San Diego",
+      "country": "United States",
       "notes": "Fish Taco 9.5/10",
       "mapsUrl": "https://www.google.com/maps/place/Oscars+Mexican+Seafood/data=!4m2!3m1!1s0x80dc018d65e6a6ed:0xea7c8b01af94dcb9",
       "_match": "list:Favorite places",
       "_source": "Saved/Favorite places.csv",
-      "_needs_geocode": true
+      "region": "California",
+      "_geocoded": "nominatim"
     },
     {
       "name": "Pancho's Takos",
@@ -254,15 +261,16 @@
     {
       "name": "Tacko",
       "type": "taco",
-      "lat": 0,
-      "lng": 0,
-      "city": "",
-      "country": "",
+      "lat": 37.798291,
+      "lng": -122.435887,
+      "city": "San Francisco",
+      "country": "United States",
       "notes": "Excellent Baja fish taco",
       "mapsUrl": "https://www.google.com/maps/place/Tacko/data=!4m2!3m1!1s0x808580d086a5fb5d:0x295e9f555b9a5efc",
       "_match": "list:Favorite places",
       "_source": "Saved/Favorite places.csv",
-      "_needs_geocode": true
+      "region": "California",
+      "_geocoded": "google-geocoding"
     },
     {
       "name": "Tacos Al Vapor Michoacan",
@@ -297,15 +305,16 @@
     {
       "name": "Tacos y Mariscos “El Rinconcito”",
       "type": "taco",
-      "lat": 0,
-      "lng": 0,
-      "city": "",
-      "country": "",
+      "lat": 20.869233,
+      "lng": -105.43929,
+      "city": "Sayulita",
+      "country": "Mexico",
       "notes": "",
       "mapsUrl": "https://www.google.com/maps/place/Tacos+y+Mariscos+%E2%80%9CEl+Rinconcito%E2%80%9D/data=!4m2!3m1!1s0x8421167055d5149f:0xa6b84ddf60330c43",
       "_match": "list:Want to go",
       "_source": "Saved/Want to go.csv",
-      "_needs_geocode": true
+      "_geocoded": "google-geocoding",
+      "region": "Nayarit"
     },
     {
       "name": "Taqueria Los Pericos",
