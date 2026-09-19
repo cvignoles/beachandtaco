@@ -44,7 +44,7 @@ async function loadPlaces() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     places = (data.places || [])
-      .filter((p) => TYPE_META[p.type] && isFinite(p.lat) && isFinite(p.lng))
+      .filter((p) => TYPE_META[p.type] && hasCoords(p))
       .map((p, i) => ({ ...p, id: i }));
   } catch (err) {
     console.error('Could not load places:', err);
@@ -250,6 +250,12 @@ function stars(n) {
 function fmtDate(iso) {
   const d = new Date(iso + 'T00:00:00');
   return isNaN(d) ? iso : d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+// Guard against 0,0 — Takeout emits it for saved places with no location,
+// which would otherwise drop a pin in the Atlantic off West Africa.
+function hasCoords(p) {
+  return isFinite(p.lat) && isFinite(p.lng) && !(p.lat === 0 && p.lng === 0);
 }
 
 function esc(s) {
