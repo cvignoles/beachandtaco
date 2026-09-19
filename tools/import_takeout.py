@@ -31,7 +31,7 @@ BEACH_WORDS = [
     "caleta", "costa", "coastal", "waterfront", "boardwalk", "pier",
 ]
 # Words that, standing alone, are too weak to classify on their own.
-WEAK = {"baja", "costa", "coastal", "mexican", "pier", "cove", "bay"}
+WEAK = {"baja", "costa", "coastal", "pier", "cove", "bay"}
 
 # Names that look like a match but are not the thing itself. A place whose name
 # says "deli" is a deli even if it sits in a town called Newport Beach.
@@ -41,15 +41,33 @@ NAME_BLOCKLIST = re.compile(
     r"realty|rentals?|spa|gym)\b", re.I)
 
 
+# Places whose names carry no keyword at all. Keyed by exact lowercased title.
+MANUAL = {
+    "el tarasco": "taco",
+    "los caños de meca": "beach",
+    "bar miramar sayulita": "beach",
+    "praia da falésia": "beach",
+}
+
+
 def classify(name, address, text):
+    manual = MANUAL.get((name or "").strip().lower())
+    if manual:
+        return manual, ["manual"]
+
     """Return (kind, [reasons]) where kind is 'taco', 'beach' or None."""
     hay = " ".join(x for x in (name, address, text) if x).lower()
     name_l = (name or "").lower()
 
+    # These read as taco words even with a prefix glued on (Nixtaco). The
+    # trailing boundary still excludes Tacoma.
+    SUFFIXABLE = {"taco", "tacos", "takos"}
+
     def hits(words):
         found = []
         for w in words:
-            if re.search(r"(?<![a-z])" + re.escape(w) + r"(?![a-z])", hay):
+            lead = "" if w in SUFFIXABLE else r"(?<![a-z])"
+            if re.search(lead + re.escape(w) + r"(?![a-z])", hay):
                 strong = (w not in WEAK) and (w in name_l)
                 found.append((w, strong))
         return found

@@ -15,6 +15,19 @@
       "visited": "2026-06-12"
     },
     {
+      "name": "Bar Miramar Sayulita",
+      "type": "beach",
+      "lat": 0,
+      "lng": 0,
+      "city": "",
+      "country": "",
+      "notes": "",
+      "mapsUrl": "https://www.google.com/maps/place/Bar+Miramar+Sayulita/data=!4m2!3m1!1s0x842117923312f94f:0x7e35f701eaedfe11",
+      "_match": "list:Want to go",
+      "_source": "Saved/Want to go.csv",
+      "_needs_geocode": true
+    },
+    {
       "name": "Casa Tranquilidad",
       "type": "beach",
       "lat": 17.624806,
@@ -32,15 +45,41 @@
     {
       "name": "Galapos beach, São Simão, Portugal",
       "type": "beach",
-      "lat": 0,
-      "lng": 0,
-      "city": "",
-      "country": "",
+      "lat": 38.484478,
+      "lng": -8.964198,
+      "city": "Setúbal",
+      "country": "Portugal",
       "notes": "",
       "mapsUrl": "http://maps.google.com/?q=Galapos+beach,+S%C3%A3o+Sim%C3%A3o,+Portugal&ftid=0xd1944d7d4f69733:0xcd6448731bc7131c",
       "_match": "beach",
       "_source": "Saved Places",
       "visited": "2024-06-29",
+      "_geocoded": "nominatim"
+    },
+    {
+      "name": "Los Caños de Meca",
+      "type": "beach",
+      "lat": 0,
+      "lng": 0,
+      "city": "",
+      "country": "",
+      "notes": "",
+      "mapsUrl": "https://www.google.com/maps/place/Los+Ca%C3%B1os+de+Meca/data=!4m2!3m1!1s0xd0c412f9493595b:0xa04640009eb0a30",
+      "_match": "list:Want to go",
+      "_source": "Saved/Want to go.csv",
+      "_needs_geocode": true
+    },
+    {
+      "name": "Praia da Falésia",
+      "type": "beach",
+      "lat": 0,
+      "lng": 0,
+      "city": "",
+      "country": "",
+      "notes": "",
+      "mapsUrl": "https://www.google.com/maps/place/Praia+da+Fal%C3%A9sia/data=!4m2!3m1!1s0xd1aca2dab8fa859:0x8d275b4ac2580492",
+      "_match": "list:Want to go",
+      "_source": "Saved/Want to go.csv",
       "_needs_geocode": true
     },
     {
@@ -74,6 +113,34 @@
       "visited": "2025-01-04"
     },
     {
+      "name": "Coyote's Mexican Cafe",
+      "type": "taco",
+      "lat": 37.511688,
+      "lng": -122.293623,
+      "city": "Belmont",
+      "country": "United States",
+      "notes": "",
+      "mapsUrl": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x0:0xa5ed20087623e40f",
+      "_match": "mexican",
+      "_source": "Reviews",
+      "region": "California",
+      "rating": 5,
+      "visited": "2019-08-07"
+    },
+    {
+      "name": "El Tarasco",
+      "type": "taco",
+      "lat": 0,
+      "lng": 0,
+      "city": "",
+      "country": "",
+      "notes": "",
+      "mapsUrl": "https://www.google.com/maps/place/El+Tarasco/data=!4m2!3m1!1s0x80c2baa2e51179d9:0x34c79c7dea3cae71",
+      "_match": "list:Want to go",
+      "_source": "Saved/Want to go.csv",
+      "_needs_geocode": true
+    },
+    {
       "name": "La Torta Gorda",
       "type": "taco",
       "lat": 37.752678,
@@ -104,6 +171,58 @@
       "visited": "2024-08-28"
     },
     {
+      "name": "Mary's Traditional Mexican Cuisine",
+      "type": "taco",
+      "lat": 0,
+      "lng": 0,
+      "city": "",
+      "country": "",
+      "notes": "",
+      "mapsUrl": "https://www.google.com/maps/place/Mary's+Traditional+Mexican+Cuisine/data=!4m2!3m1!1s0x842116705e992cd1:0xd523f3fa932f2c98",
+      "_match": "list:Want to go",
+      "_source": "Saved/Want to go.csv",
+      "_needs_geocode": true
+    },
+    {
+      "name": "Mission Baja Tacos",
+      "type": "taco",
+      "lat": 0,
+      "lng": 0,
+      "city": "",
+      "country": "",
+      "notes": "Fish Taco 9/10",
+      "mapsUrl": "https://www.google.com/maps/place/Mission+Baja+Tacos/data=!4m2!3m1!1s0x80dc01d8d47da75d:0xbfd4cfd823e0e2b1",
+      "_match": "list:Favorite places",
+      "_source": "Saved/Favorite places.csv",
+      "_needs_geocode": true
+    },
+    {
+      "name": "Nixtaco",
+      "type": "taco",
+      "lat": 0,
+      "lng": 0,
+      "city": "",
+      "country": "",
+      "notes": "",
+      "mapsUrl": "https://www.google.com/maps/place/Nixtaco/data=!4m2!3m1!1s0x809ae0022486039f:0xa2f5977e83d362b9",
+      "_match": "list:Want to go",
+      "_source": "Saved/Want to go.csv",
+      "_needs_geocode": true
+    },
+    {
+      "name": "Oscars Mexican Seafood",
+      "type": "taco",
+      "lat": 0,
+      "lng": 0,
+      "city": "",
+      "country": "",
+      "notes": "Fish Taco 9.5/10",
+      "mapsUrl": "https://www.google.com/maps/place/Oscars+Mexican+Seafood/data=!4m2!3m1!1s0x80dc018d65e6a6ed:0xea7c8b01af94dcb9",
+      "_match": "list:Favorite places",
+      "_source": "Saved/Favorite places.csv",
+      "_needs_geocode": true
+    },
+    {
       "name": "Pancho's Takos",
       "type": "taco",
       "lat": 20.601954,
@@ -117,6 +236,33 @@
       "region": "Jalisco",
       "rating": 5,
       "visited": "2023-07-06"
+    },
+    {
+      "name": "Suavecito Birria & Tacos",
+      "type": "taco",
+      "lat": 37.788548,
+      "lng": -122.414835,
+      "city": "San Francisco",
+      "country": "United States",
+      "notes": "",
+      "mapsUrl": "https://www.google.com/maps/place/Suavecito+Birria+%26+Tacos/data=!4m2!3m1!1s0x808f9f5ded744491:0x5b0964bfc0df0bee",
+      "_match": "list:Want to go",
+      "_source": "Saved/Want to go.csv",
+      "region": "California",
+      "_geocoded": "nominatim"
+    },
+    {
+      "name": "Tacko",
+      "type": "taco",
+      "lat": 0,
+      "lng": 0,
+      "city": "",
+      "country": "",
+      "notes": "Excellent Baja fish taco",
+      "mapsUrl": "https://www.google.com/maps/place/Tacko/data=!4m2!3m1!1s0x808580d086a5fb5d:0x295e9f555b9a5efc",
+      "_match": "list:Favorite places",
+      "_source": "Saved/Favorite places.csv",
+      "_needs_geocode": true
     },
     {
       "name": "Tacos Al Vapor Michoacan",
@@ -147,6 +293,33 @@
       "region": "Baja California Sur",
       "rating": 5,
       "visited": "2019-11-27"
+    },
+    {
+      "name": "Tacos y Mariscos “El Rinconcito”",
+      "type": "taco",
+      "lat": 0,
+      "lng": 0,
+      "city": "",
+      "country": "",
+      "notes": "",
+      "mapsUrl": "https://www.google.com/maps/place/Tacos+y+Mariscos+%E2%80%9CEl+Rinconcito%E2%80%9D/data=!4m2!3m1!1s0x8421167055d5149f:0xa6b84ddf60330c43",
+      "_match": "list:Want to go",
+      "_source": "Saved/Want to go.csv",
+      "_needs_geocode": true
+    },
+    {
+      "name": "Taqueria Los Pericos",
+      "type": "taco",
+      "lat": 19.38966,
+      "lng": -99.159607,
+      "city": "Ciudad de México",
+      "country": "México",
+      "notes": "Sean",
+      "mapsUrl": "https://www.google.com/maps/place/Taqueria+Los+Pericos/data=!4m2!3m1!1s0x808e40259ef71211:0xc5436a3574cfc597",
+      "_match": "list:Want to go",
+      "_source": "Saved/Want to go.csv",
+      "region": "Ciudad de México",
+      "_geocoded": "nominatim"
     },
     {
       "name": "The Taco Stand",
