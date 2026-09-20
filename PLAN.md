@@ -17,7 +17,8 @@ Plain HTML + CSS + Vanilla JS, deployed to Cloudflare Pages. No framework, no bu
 │   └── style.css
 ├── data/
 │   ├── places.json     (all beaches + taco spots — edit this to add a place)
-│   └── places.candidates.json  (import staging, not read by the site)
+│   ├── places.candidates.json  (import staging, not read by the site)
+│   └── places.csv              (spreadsheet round-trip, not read by the site)
 ├── manifest.webmanifest        (home-screen install for the add form)
 ├── images/icons/               (home-screen icons)
 ├── tools/
@@ -110,6 +111,53 @@ API key. Results are gated on precision: Nominatim answers a restaurant query
 with the city centroid, which looks plausible and is wrong, so anything vaguer
 than a real point of interest is rejected rather than written. When that happens,
 right-click the pin in Google Maps and paste the two numbers in yourself.
+
+## Editing the Log in a Spreadsheet
+
+For bulk edits — filling in notes, ratings and dates, or adding a batch of places
+at once — round-trip through CSV.
+
+```
+python3 tools/places_csv.py export               # data/places.json -> data/places.csv
+#   ... edit data/places.csv in Excel, Numbers or Sheets ...
+python3 tools/places_csv.py import               # check it, write nothing
+python3 tools/places_csv.py import --apply       # rebuild places.json from the CSV
+```
+
+The CSV is written with a UTF-8 BOM so Excel reads the accents correctly
+(Falesia, Canos, Sao). Export then import with no edits is lossless — verified.
+
+**The CSV is the whole truth on import.** Delete a row and that place leaves the
+site. That is the point, but it means the import is a replace, not a merge.
+
+**Adding places without coordinates.** Leave `lat` and `lng` blank, fill in `name`
+and `city`, then:
+
+```
+python3 tools/places_csv.py import --apply --geocode
+```
+
+It looks each one up and prints the address it matched, so a wrong hit is visible.
+Anything it cannot place confidently is reported rather than guessed at.
+
+**Nothing is written if a row is bad.** Import validates every row first and
+refuses the whole file on a problem, so a typo cannot quietly empty the map.
+Row numbers in the errors match the spreadsheet, header included. Checked:
+unknown `type`, a date that is not YYYY-MM-DD, a rating outside 1-5, coordinates
+out of range or at 0,0, and a missing name. Blank spacer rows are skipped.
+`--force` writes the valid rows and skips the rest.
+
+### Columns
+
+| Column | Notes |
+|---|---|
+| `name`, `type` | required; type is `taco` or `beach` |
+| `lat`, `lng` | required unless using `--geocode` |
+| `city`, `region`, `country` | shown on the card |
+| `visited` | `YYYY-MM-DD`; sorts the log, newest first |
+| `rating` | 1-5 |
+| `notes` | your write-up |
+| `mapsUrl`, `photo`, `post` | optional links |
 
 ## One-time Migration Tooling
 
