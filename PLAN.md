@@ -156,6 +156,51 @@ Security comes from Google Cloud Console instead:
 
 Keys for server-side or one-off scripts (Places, Geocoding) must **not** be committed.
 
+### GitHub secret-scanning alert
+
+GitHub flags `js/config.js` as "Google API Key detected". **This is expected and
+is not a leak.** The scanner pattern-matches `AIza...` and cannot tell a browser
+key from a server key. A Maps JavaScript key is served to every visitor's browser
+by design, so it is public whether or not it sits in git.
+
+Close the alert in Security -> Secret scanning with reason **Won't fix**, and note
+why. Do not rotate: a replacement key would be equally public.
+
+What actually protects the key is the restriction pair above. Verified by probe:
+
+| Caller | Result |
+|---|---|
+| `beachandtaco.com` / `www.` | allowed |
+| any other domain | 403 |
+| Geocoding / Directions / Places, server-side | denied — referrer-restricted keys are barred from these APIs |
+
+**One real gap to keep closed.** Static Maps API accepts a referrer-restricted key
+when the request sends *no* referrer at all, so it cannot be protected by domain
+restriction. The only defense is the API restriction. Keep the key limited to
+**Maps JavaScript API only** — if Static Maps is reachable, someone can bill
+requests to this project from anywhere. Re-check with:
+
+```
+curl -s -o /dev/null -w '%{http_code}\n' \
+  "https://maps.googleapis.com/maps/api/staticmap?center=0,0&zoom=1&size=40x40&key=YOUR_KEY"
+```
+
+`403` is correct. `200` means the API restriction has come loose.
+
+### If the alert needs to go away entirely
+
+Keep the key out of git by generating `js/config.js` at deploy time. In the
+Cloudflare Pages project, set an environment variable `MAPS_API_KEY` and a build
+command:
+
+```
+echo "const MAPS_API_KEY = '$MAPS_API_KEY';" > js/config.js
+```
+
+The key still reaches the browser, so this buys no real security — it only
+satisfies the scanner, and it adds a failure mode where a missing variable
+silently breaks the map. Not worth it unless a clean security tab matters.
+
 ## Formspree Setup (Contact Form)
 
 Yes, you need a free account. Steps:
